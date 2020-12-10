@@ -1,0 +1,35 @@
+<article class="media box">
+  <div class="media-content">
+    <%= simple_form_for(@room) do |f| %>
+	  <%= f.error_notification %>
+	  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <div class="field has-addons">
+        <div class="control">
+          <%= f.text_field :name, class: "input", placeholder: "enter room name", required: true %>
+        </div>
+        <div class="control">
+          <%= f.text_field :start_date, class: "input", id: "start_date",placeholder: "Select the Start Date", required: true %>
+        </div>
+        <div class="control">
+          <%= f.text_field :end_date, class: "input", id: "end_date", placeholder: "Select the End Date", required: true %>
+        </div>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <div class="control">
+          <%= f.submit "Create New Room", class: "button is-success" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</article>  
+
+<script>
+  $('#start_date').datetimepicker();
+  $("#start_date").keyup(function(){
+    $("#start_date").val("");
+  });
+  $('#end_date').datetimepicker();
+  $("#end_date").keyup(function(){
+    $("#end_date").val("");
+  });
+</script>
+

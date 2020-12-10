@@ -1,0 +1,37 @@
+
+<div class="column is-half ">
+  <article class="media box">
+    <div class="media-content">
+    	<%= simple_form_for(@invite) do |f| %>
+		  <%= f.error_notification %>
+		  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <div class="field">
+          <%= f.label :email, class: "label" %>
+          <div class="control">            
+            <%= f.text_field :email, class: "input", placeholder: "Enter Email" %><br>            
+          </div>
+        </div>
+        <%= f.hidden_field :room_id %>
+        
+        <div class="field is-grouped">
+          <div class="control">
+            <%= f.submit class: "button is-link" %>
+          </div>
+          <div class="control">
+            <%= link_to "Cancel", rooms_path, class: "button is-link is-light" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </article>
+</div>
+<script>
+  $('#datetimepicker').datetimepicker();
+  $("#datetimepicker").keyup(function(){
+    $("#datetimepicker").val("");
+  });
+</script>
+
+
+
+  
